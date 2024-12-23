@@ -5,12 +5,13 @@ def Task1(n):
     :param n: вводимое число
     :return: None
     '''
-    for i in range(2,n+1):
-        while (n%i==0):
-            print(i," ",end="")
-            n //= i
-        if n == 1:
-            break
+    for i in range(2, n + 1):  # Идем по всем целым числам от 2 до n (включительно)
+    while (n % i == 0):  # Пока n делится на i без остатка
+        print(i, " ", end="")  # Печатаем i, добавляя пробел, без перехода на новую строку
+        n //= i  
+    if n == 1:  # Если n стало равным 1, то конец
+        break  
+
 
 def Task2(n):
     '''
@@ -20,13 +21,14 @@ def Task2(n):
     :param n: вводимая последовательность
     :return sum/k: среднее арифметическое
     '''
-    sum = 0
-    k = 1
-    while n != 0:
-        sum += n
-        n = int(input())
-        k += 1
-    return sum/k
+    sum = 0  # Сумма введенных чисел
+    k = 1    # Кол-во введенных чисел
+    while n != 0: 
+        sum += n 
+        n = int(input('Введите число: '))  
+        k += 1  # Увеличиваем счетчик k
+    return sum / k  # Возвращаем среднее значение
+
 
 def Task3(x, eps):
     '''
@@ -36,19 +38,30 @@ def Task3(x, eps):
     :param eps: точность
     :return: результат функции
     '''
-    from math import log
-    while not(0<x<2):
-        print("Ошибка ввода.Повторите")
-    y = 0
-    zn = 1
-    sign = 1
-    stepen_x=(x-1)
-    a = sign*(stepen_x/zn)
-    while abs(a > eps):
-        y += a
-        zn += 1
-        sign = -sign
-        stepen_x *= (x - 1)
-        a = sign*(stepen_x/zn)
+    from math import log  # Импортируем функцию log из модуля math для вычисления логарифма
+
+    # Пока x не находится в диапазоне (0, 2)
+    while not(0 < x < 2):
+        print("Ошибка ввода. Повторите")  # Выводим сообщение об ошибке, если x вне диапазона
+    
+    y = 0  # Результат
+    zn = 1 
+    sign = 1  
+    stepen_x = (x - 1)  # 
+    
+    # Вычисляем первое значение a
+    a = sign * (stepen_x / zn)
+    
+    # Пока абсолютное значение a больше eps
+    while abs(a) > eps:
+        y += a  # Суммируем
+        zn += 1  # Увеличиваем zn на 1 
+        sign = -sign  # Меняем знак для следующего значения a
+        stepen_x *= (x - 1)  # Обновляем stepen_x для следующего значения a
+        a = sign * (stepen_x / zn)  # Вычисляем новое значение a
+    
+    # Выводим результат y с шестью знаками после запятой
     print(f"y = {y:.6f}")
+    
+    # Выводим значение логарифма x с шестью знаками после запятой
     print(f"log x = {log(x):.6f}")
